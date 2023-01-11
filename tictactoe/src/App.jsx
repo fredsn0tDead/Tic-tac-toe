@@ -1,12 +1,13 @@
 import React from "react";
+import { Board } from "./components/Board";// must use curly brackets to import a function
 
 const App = () => {
   return(
-    <>
-    <h1>Welcome to React Vite Micro App!</h1>
-    <p>Hard to get more minimal than this React app.</p>
-    <small>Hello this is me</small>
-  </>
+    <div>
+    <h1>TIC TAC TOE</h1>
+    <Board/>
+    
+  </div>
 
   );
 };
