@@ -1,35 +1,14 @@
-import React, {useState} from 'react'
+import React from 'react';
 import {Square} from './Square'
 
 
 
-export const Board = () => {//properties
+export const Board = ({board, handlesquareclick}) => {//properties passed in the App
     //need to use react hooks
-    const [board, setboard] =  useState(Array(9).fill(null));
-    const [isXNext, setisXNext] = useState(false);
-
-    const handlesquareclick = (position) => {
-            //new value to set the state
-
-            if (board[position])
-
-            {
-                return;
-            }
-
-            setboard((prev)=>{
-                   
-                return prev.map((square,pos)=>{
-                    if (pos == position){
-                        return isXNext ? 'X' : 'O';
-                    }
-                    return square;
-                });
-
-            });
-            setisXNext((prev)=>!prev); 
-    };
+    
     const renderSquare = (position) =>{
+        //Once the function accepts the numbered paramter the function returns the square commponet wiht the boards position being its value and the position being passed in the handlesquare click
+        //In otherwords when the position is passed to the the handlesquareclick can handle the different states
         return( <Square value={board[position]} onClick={()=>{
             handlesquareclick(position)
         }}/>
@@ -38,7 +17,10 @@ export const Board = () => {//properties
   return (
     <div className='board'>
         <div className='board-row'>
-            { renderSquare(0)}
+            
+            { renderSquare(0)
+            //Each square is given a number position to be passed in
+            }
             { renderSquare(1)}
             { renderSquare(2)}
         </div>
