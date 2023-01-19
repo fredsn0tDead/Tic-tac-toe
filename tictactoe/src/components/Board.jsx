@@ -3,15 +3,19 @@ import {Square} from './Square'
 
 
 
-export const Board = ({board, handlesquareclick}) => {//properties passed in the App
+export const Board = ({board, handlesquareclick, winningSquares}) => {//properties passed in the App
     //need to use react hooks
     
     const renderSquare = (position) =>{
+
+        const isWinningSquares = winningSquares.includes(position);
         //Once the function accepts the numbered paramter the function returns the square commponet wiht the boards position being its value and the position being passed in the handlesquare click
         //In otherwords when the position is passed to the the handlesquareclick can handle the different states
         return( <Square value={board[position]} onClick={()=>{
             handlesquareclick(position)
-        }}/>
+            
+        }}
+        isWinningSquares={isWinningSquares}/>
         ); 
     };
   return (

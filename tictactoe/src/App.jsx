@@ -6,16 +6,18 @@ import "./styles/root.scss"
 import  History  from "./components/History";  
 import { calculateWinner } from "./components/helpers";
 
+const NEW_GAME = [{board: Array(9).fill(null), isXNext:true},];
+
 const App = () => {
-  const [history, setHistory] =  useState([{board: Array(9).fill(null), isXNext:true},]);
+  const [history, setHistory] =  useState(NEW_GAME);
   
   const [currentMove, Setcurrentmove] = useState(0);
   console.log(history);
 
   const current = history[currentMove];//index of the current move
-  const winner = calculateWinner(current.board);//put the winner in a state pass in our board state
+  const {winner, winningSquares } = calculateWinner(current.board);//put the winner in a state pass in our board state
   // whenever our board updates our board will be rendered
-  const message = winner ? `Winner is ${winner}`: `Next player is ${current.isXNext ? 'X' : 'O'}`
+  const message = winner ? `Winner is ${winner}`: `Next player is ${current.isXNext ? 'X' : 'O'}`;
   //created tenary operation in order to determine the winner message and see whos turn it is
   //If it is not the winner we need to find out whos turn it is
   //Use String interpolation in order to determing this
@@ -54,14 +56,21 @@ const App = () => {
   };
   const moveTo = (move) =>{
 
-    Setcurrentmove(move)
+    Setcurrentmove(move);
+
+  }
+
+  const onNewGame = () => {
+    setHistory(NEW_GAME);
+    Setcurrentmove(0);
 
   }
   return(
     <div className="app">
     <h1>TIC TAC TOE</h1>
     <Status winner={winner} current={current}/>
-    <Board board={current.board} handlesquareclick={handlesquareclick}/>
+    <Board board={current.board} handlesquareclick={handlesquareclick} winningSquares={winningSquares}/>
+    <button type = "button" onClick={onNewGame}>Start New Game</button>
     <History history={history} moveTo={moveTo} currentMove={currentMove}/>
     
   </div>
