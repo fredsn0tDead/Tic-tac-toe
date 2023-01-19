@@ -1,4 +1,5 @@
 import React from "react";
+import  Status  from "./components/status";
 import { useState } from "react";
 import { Board } from "./components/Board";// must use curly brackets to import a function
 import "./styles/root.scss"
@@ -59,9 +60,10 @@ const App = () => {
   return(
     <div className="app">
     <h1>TIC TAC TOE</h1>
-    <h2>{message}</h2>
+    <Status winner={winner} current={current}/>
     <Board board={current.board} handlesquareclick={handlesquareclick}/>
     <History history={history} moveTo={moveTo} currentMove={currentMove}/>
+    
   </div>
 
   );
