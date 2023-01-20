@@ -1,13 +1,14 @@
 import React from 'react'
  const History = ({history, moveTo , currentMove}) => {
   return (
-    <ul>
+    <div className='history-wrapper'>
+    <ul className='history'>
       {
         history.map((_,move)=>{//move represent the index or current move we can use _ the represent we will not be
           return(
-
+          
           <li key={move}>
-            <button style={{
+            <button className={`btn-move ${move ===currentMove ? 'active' : ''}`} style={{
               //apply some inline styling
               fontWeight:move === currentMove ? 'bold' :'normal',
 
@@ -28,6 +29,8 @@ import React from 'react'
         
     
     </ul>
+    </div>
   );
+  
 };
 export default History;

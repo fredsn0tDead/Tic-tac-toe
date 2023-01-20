@@ -4,7 +4,7 @@ export const Square= ({value, onClick, isWinningSquares}) => { //pass in a destr
  
   return (
         
-        <button type='button' className='square' onClick={onClick} style ={{fontWeight: isWinningSquares ? 'bold' : 'normal'}}//pass in the value of the square
+        <button type='button' className={`square ${isWinningSquares ? 'winning': ''}${value === 'X' ? 'text-green' : 'text-orange'}`} onClick={onClick} style ={{fontWeight: isWinningSquares ? 'bold' : 'normal'}}//pass in the value of the square
         >{ value}
         
         </button>//passed an attribute to this button
